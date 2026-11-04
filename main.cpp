@@ -117,7 +117,7 @@ int main() {
                             float dot_crash = (spin_x * rp.velocity.x) + (spin_z * rp.velocity.z);
                             float brightness = 1.0f + dot_crash * 1.5f;
 
-                            // Ripple bands placed safely inside scope
+                            
                             float rings = 0.75f + 0.25f * sinf(flat_dist * 6.0f);
                             brightness *= rings;
 
