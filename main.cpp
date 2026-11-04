@@ -134,7 +134,17 @@ int main() {
                             else if(brightness > 2.0f){
                                 brightness = 2.0f;
                             }
-                            rp.pixel_color = (Color){ (unsigned char)(200 * brightness), (unsigned char)(100 * brightness), (unsigned char)(20 * brightness), 255 };
+                           float r = 220.0f * brightness;
+                           float g = 120.0f * brightness;
+                           float b = 30.0f * brightness;
+
+
+                           if (r > 255.0f) r = 255.0f;
+                           if (g > 255.0f) g = 255.0f;
+                           if (b > 255.0f) b = 255.0f;
+
+                            rp.pixel_color = (Color){ (unsigned char)r, (unsigned char)g, (unsigned char)b, 255 };
+
 
                             rp.is_done = true;
                             break;
