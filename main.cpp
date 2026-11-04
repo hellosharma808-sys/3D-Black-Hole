@@ -154,8 +154,9 @@ int main() {
                     if (dice < 0) dice = -dice;
 
                     
-                    if (dice % 35 == 0) {
-                        rp.pixel_color = WHITE;
+                    if (dice % 250 == 0) {
+                       rp.pixel_color = (Color){ 180, 190, 220, 255 };
+
                     } else {
                         rp.pixel_color = (Color){ 12, 12, 22, 255 }; 
                     }
