@@ -94,7 +94,14 @@ int main() {
                     }
 
                     if (distance > 40.0f) {
+                        int sky_x = (rp.velocity.x * 150.0f);
+                        int sky_y = (rp.velocity.y * 150.0f);
+                        if ((sky_x + sky_y * 7) % 31 == 0){
+                            rp.pixel_color =  WHITE;
+                        }
+                        else{
                         rp.pixel_color = (Color){ 15, 15, 25, 255 };
+                        }
                         rp.is_done = true;
                         break;
                     }
@@ -116,7 +123,19 @@ int main() {
                         double flat_dist = sqrt(ix * ix + iz * iz);
 
                         if (flat_dist > 4.0f && flat_dist < 11.0f) {
-                            rp.pixel_color = ORANGE;
+                            float spin_x = -iz / flat_dist;
+                            float spin_z = ix / flat_dist;
+                            float dot_crash;
+                            dot_crash = (spin_x * rp.velocity.x) + (spin_z * rp.velocity.z);
+                           float brightness = 1.0f + dot_crash * 1.5f;
+                            if(brightness < 0.2f){
+                                brightness = 0.2f;
+                            }
+                            else if(brightness > 2.0f){
+                                brightness = 2.0f;
+                            }
+                            rp.pixel_color = (Color){ (unsigned char)(200 * brightness), (unsigned char)(100 * brightness), (unsigned char)(20 * brightness), 255 };
+
                             rp.is_done = true;
                             break;
                         }
