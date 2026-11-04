@@ -117,9 +117,15 @@ int main() {
                             float dot_crash = (spin_x * rp.velocity.x) + (spin_z * rp.velocity.z);
                             float brightness = 1.0f + dot_crash * 1.5f;
 
+                            float heat = 1.0f - ((flat_dist - 4.0f) / 7.0f); 
+
+                            float edge_fade = 1.0f;
+                           if (flat_dist < 4.8f) edge_fade = (flat_dist - 4.0f) / 0.8f;
+                            if (flat_dist > 9.5f) edge_fade = (11.0f - flat_dist) / 1.5f;
+
+brightness *= (0.5f + 0.5f * heat) * edge_fade;
+
                             
-                            float rings = 0.75f + 0.25f * sinf(flat_dist * 6.0f);
-                            brightness *= rings;
 
                             if (brightness < 0.2f) brightness = 0.2f;
                             else if (brightness > 2.0f) brightness = 2.0f;
